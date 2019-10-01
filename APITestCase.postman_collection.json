@@ -1,0 +1,365 @@
+{
+	"info": {
+		"_postman_id": "52ba0c75-acb2-43f9-8e00-737049bc3d42",
+		"name": "APITestCase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List All Stamps",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put_MissingAuthor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f7cf756-2b45-4fd3-94e3-9078033f3a9b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Field 'Author' is required.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":1, \"title\":\"From Singapore\"}"
+				},
+				"url": {
+					"raw": "{{API_ROOT}}/api/stamp",
+					"host": [
+						"{{API_ROOT}}"
+					],
+					"path": [
+						"api",
+						"stamp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put_EmptyAuthor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f7cf756-2b45-4fd3-94e3-9078033f3a9b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Field 'Author' can not be empty.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":1, \"Author\":\"\" \"title\":\"From Singapore\"}"
+				},
+				"url": {
+					"raw": "{{API_ROOT}}/api/stamp",
+					"host": [
+						"{{API_ROOT}}"
+					],
+					"path": [
+						"api",
+						"stamp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put_MissingTitle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f7cf756-2b45-4fd3-94e3-9078033f3a9b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Field 'Title' is required.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":1, \"author\":\"John Smith\"}"
+				},
+				"url": {
+					"raw": "{{API_ROOT}}/api/stamp",
+					"host": [
+						"{{API_ROOT}}"
+					],
+					"path": [
+						"api",
+						"stamp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put_EmptyTitle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f7cf756-2b45-4fd3-94e3-9078033f3a9b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Field 'Title' is required.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":1, \"author\":\"John Smith\"}"
+				},
+				"url": {
+					"raw": "{{API_ROOT}}/api/stamp",
+					"host": [
+						"{{API_ROOT}}"
+					],
+					"path": [
+						"api",
+						"stamp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put_IdShouldReadOnly",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f7cf756-2b45-4fd3-94e3-9078033f3a9b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Field 'Title' is required.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":1, \"author\":\"John Smith\"}"
+				},
+				"url": {
+					"raw": "{{API_ROOT}}/api/stamp",
+					"host": [
+						"{{API_ROOT}}"
+					],
+					"path": [
+						"api",
+						"stamp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put_CreateNewStamp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f7cf756-2b45-4fd3-94e3-9078033f3a9b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should Return Same Stamp\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.author).to.equal({{NEW_STAMP_AUTHOR}});",
+							"});",
+							"pm.test(\"Should Return Same Stamp\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.title).to.equal({{NEW_STAMP_TITLE}});",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"author\":\"{{NEW_STAMP_AUTHOR}}\", \"title\":\"{{NEW_STAMP_TITLE}}\"}"
+				},
+				"url": {
+					"raw": "{{API_ROOT}}/api/stamp",
+					"host": [
+						"{{API_ROOT}}"
+					],
+					"path": [
+						"api",
+						"stamp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_CreatedStamp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put_CreateSameStamp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f7cf756-2b45-4fd3-94e3-9078033f3a9b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should Return Same Stamp\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.author).to.equal({{NEW_STAMP_AUTHOR}});",
+							"});",
+							"pm.test(\"Should Return Same Stamp\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.title).to.equal({{NEW_STAMP_TITLE}});",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"author\":\"{{NEW_STAMP_AUTHOR}}\", \"title\":\"{{NEW_STAMP_TITLE}}\"}"
+				},
+				"url": {
+					"raw": "{{API_ROOT}}/api/stamp",
+					"host": [
+						"{{API_ROOT}}"
+					],
+					"path": [
+						"api",
+						"stamp"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
